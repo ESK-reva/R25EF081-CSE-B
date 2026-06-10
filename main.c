@@ -7,6 +7,7 @@ int main(){
     verticalline(10,5,15);
     drawRectangle(5,3,10,5);
     drawTriangle(10,5,5,15,15,15);
+    drawCircle(30, 15, 8);
     displayCanvas();
   return 0;
 }
@@ -73,4 +74,37 @@ void drawTriangle(int x1, int y1,
     drawLine(x1, y1, x2, y2);
     drawLine(x2, y2, x3, y3);
     drawLine(x3, y3, x1, y1);
+}
+void drawCircle(int xc, int yc, int r)
+{
+    int x = 0;
+    int y = r;
+    int d = 1 - r;
+
+    while (x <= y)
+    {
+        /* 8 symmetric points */
+        plot(xc + x, yc + y);
+        plot(xc - x, yc + y);
+
+        plot(xc + x, yc - y);
+        plot(xc - x, yc - y);
+
+        plot(xc + y, yc + x);
+        plot(xc - y, yc + x);
+
+        plot(xc + y, yc - x);
+        plot(xc - y, yc - x);
+         if (d < 0)
+        {
+            d = d + 2 * x + 3;
+        }
+        else
+        {
+            d = d + 2 * (x - y) + 5;
+            y--;
+        }
+
+        x++;
+    }
 }
